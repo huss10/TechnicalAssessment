@@ -225,6 +225,7 @@
   display: flex;
   align-items: flex-start;
   position: relative;
+  min-height: 300px; /* Ensure a consistent section height */
 }
 
 .suggested-column {
@@ -245,10 +246,12 @@
   font-weight: lighter;
 }
 
+
 .collaborators-list-wrapper {
   margin-left: 160px;
   width: calc(100% - 120px);
   margin-right: 60px;
+  min-height: 370px; /* Set a minimum height to ensure consistency */
 }
 
 .added-label {
@@ -352,14 +355,20 @@
   color: #555;
   font-size: 22px;
   text-align: left;
-  max-width: 280px;
+  max-width: 350px;
   margin-right: 150px;
-  margin-left: -200px;
-  min-height: 370px;
+  margin-left: -250px;
+  min-height: 370px; /* Match with the list's minimum height */
+  display: flex;
+  flex-direction: column; /* Ensure elements stack vertically */
+  align-items: flex-start;
+  justify-content: flex-start; /* Move content to the top */
 }
 
 .search-error p {
-  margin: 0 0 10px;
+  margin: 20px 0 10px;
+  margin-left: 40px;
+  word-wrap: break-word;
 }
 
 .search-error strong {
@@ -367,14 +376,12 @@
 }
 
 .invite-link {
-  display: block;
-  margin-top: 20px;
+  margin-top: 20px; /* Add space above the link */
   color: #3a77a6;
   text-decoration: none;
-  margin-left: 0px;
-  margin-top: 40px;
   font-size: 22px;
   font-weight: 300;
+  margin-left: 40px;
 }
 
 .invite-link:hover {

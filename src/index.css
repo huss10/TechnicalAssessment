@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   background-color: #fff;
@@ -98,40 +97,37 @@ main {
   align-items: center;
   padding: 20px 0;
   position: relative; 
+  cursor: pointer;
 }
 
 .note-icon {
   position: absolute;
   left: -62px; /* Adjust this value to align under the search icon */
-  top: 50%;
-  top: 56px;
+  top: 30%;
   transform: translateY(-50%);
+  z-index: 2; /* Ensure it's clickable and above other elements */
 }
 
-
-.note:hover .thumbtack-hover-icon {
-  display: inline-block; /* Show the thumbtack invisible icon when the note is hovered */
-}
+.note:hover .thumbtack-hover-icon,
 .note:hover .thumbtack-icon {
-  display: inline-block; /* Show the colored thumbtack icon for first noted when hovered */
+  display: inline-block; /* Show the pin icon when the note is hovered */
 }
 
-.thumbtack-hover-icon{
-  display: none;
-  width: 30px;
-  height: 30px;
-  margin-bottom: 30px;
-  margin-right: -10px;
-}
-
+.thumbtack-hover-icon,
 .thumbtack-icon {
-  display: flex;
+  display: inline-block;
   width: 30px;
   height: 30px;
-  margin-bottom: 45px;
-  margin-right: -50px;
+  cursor: pointer;
 }
 
+.thumbtack-hover-icon {
+  display: none;
+}
+
+.note-icon img {
+  cursor: pointer;
+}
 
 .add-icon { /* Add Collaborator icon */
   display: inline-block;
@@ -152,6 +148,7 @@ main {
   max-width: 540px;
   text-align: left;
 }
+
 .note-content h2 { /* Collaborator names */
   margin: 0;
   font-size: 20px;
@@ -220,7 +217,6 @@ main {
   margin-top: 10px;
 }
 
-
 .note:hover .delete-icon {
   display: inline-block; /* Show the delete icon when the note is hovered */
 }
@@ -235,6 +231,7 @@ main {
   right: 0; /* Align it to the right */
   z-index: 10; /* Ensure it's on top of other elements */
 }
+
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -255,4 +252,3 @@ main {
   color: #aaa;
   margin-bottom: 10px;
 }
-

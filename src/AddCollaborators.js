@@ -106,14 +106,10 @@ function CollaboratorsModal({ onClose, onInviteWithMessage, onInviteConfirmation
             </button>
           </div>
           <div className="collaborators-section">
-            {/* Conditionally render the "Suggested" labels */}
-            {!searchQuery || filteredCollaborators.length > 0 ? (
-              <div className="suggested-column">Suggested</div>
-            ) : null}
-
-            {searchQuery && filteredCollaborators.length === 0 ? (
-              <div className="suggested-column-error">Suggested</div>
-            ) : null}
+            {/* Conditionally render the "Suggested" label */}
+            <div className={`suggested-column ${filteredCollaborators.length === 0 ? 'suggested-column-error' : 'active'}`}>
+              Suggested
+            </div>
 
             <div className="collaborators-list-wrapper">
               {filteredCollaborators.length === 0 ? (

@@ -55,33 +55,48 @@ function App() {
     setNotes(notes.filter(note => note.id !== id));
   };
 
+  const handlePinClick = (id, isTopNote) => {
+    setNotes(prevNotes => {
+      if (isTopNote) {
+        // Move the top note to the second position
+        const [topNote, secondNote, ...restNotes] = prevNotes;
+        return [secondNote, topNote, ...restNotes];
+      } else {
+        // Move the clicked note to the top
+        const selectedNote = prevNotes.find(note => note.id === id);
+        const otherNotes = prevNotes.filter(note => note.id !== id);
+        return [selectedNote, ...otherNotes];
+      }
+    });
+  };
+
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     note.content.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const openComposeMessageModal = (collaborators) => {
-    setSelectedCollaborators(collaborators); // Set the selected collaborators
-    setIsCollaboratorsModalOpen(false); // Close CollaboratorsModal
-    setIsComposeMessageModalOpen(true); // Open ComposeMessageModal
+    setSelectedCollaborators(collaborators);
+    setIsCollaboratorsModalOpen(false);
+    setIsComposeMessageModalOpen(true);
   };
 
   const closeComposeMessageModal = () => {
-    setIsComposeMessageModalOpen(false); // Close ComposeMessageModal
+    setIsComposeMessageModalOpen(false);
   };
 
   const openInviteConfirmationModal = () => {
-    setIsComposeMessageModalOpen(false); // Close ComposeMessageModal
-    setIsInviteConfirmationModalOpen(true); // Open InviteConfirmationModal
+    setIsComposeMessageModalOpen(false);
+    setIsInviteConfirmationModalOpen(true);
   };
 
   const closeInviteConfirmationModal = () => {
-    setIsInviteConfirmationModalOpen(false); // Close InviteConfirmationModal
+    setIsInviteConfirmationModalOpen(false);
   };
 
   const openCollaboratorsModalAgain = () => {
-    setIsComposeMessageModalOpen(false); // Close ComposeMessageModal before reopening AddCollaborators
-    setIsCollaboratorsModalOpen(true); // Reopen CollaboratorsModal
+    setIsComposeMessageModalOpen(false);
+    setIsCollaboratorsModalOpen(true);
   };
 
   return (
@@ -120,7 +135,8 @@ function App() {
                     <img
                       src={index === 0 ? thumbtack : thumbtackHover}
                       alt="Thumbtack"
-                      className={index === 0 ? 'thumbtack-icon' : 'thumbtack-hover-icon'}
+                      className="thumbtack-icon"
+                      onClick={() => handlePinClick(note.id, index === 0)}
                     />
                   </div>
                   <div className="note-content">
@@ -154,24 +170,24 @@ function App() {
       {isCollaboratorsModalOpen && (
         <CollaboratorsModal 
           onClose={() => setIsCollaboratorsModalOpen(false)}
-          onInviteWithMessage={openComposeMessageModal} // Pass function to open ComposeMessageModal
-          onInviteConfirmation={openInviteConfirmationModal} // Pass function to open InviteConfirmationModal
+          onInviteWithMessage={openComposeMessageModal}
+          onInviteConfirmation={openInviteConfirmationModal}
         />
       )}
 
       {isComposeMessageModalOpen && (
         <ComposeMessageModal
           onClose={closeComposeMessageModal}
-          collaborators={selectedCollaborators} // Pass the selected collaborators here
-          onInviteConfirmation={openInviteConfirmationModal} // Open Invite Confirmation
-          onAddMoreCollaborators={openCollaboratorsModalAgain} // *** Change: Pass function to reopen CollaboratorsModal ***
+          collaborators={selectedCollaborators}
+          onInviteConfirmation={openInviteConfirmationModal}
+          onAddMoreCollaborators={openCollaboratorsModalAgain}
         />
       )}
 
       {isInviteConfirmationModalOpen && (
         <InviteConfirmationModal
           onClose={closeInviteConfirmationModal}
-          onAddMoreCollaborators={openCollaboratorsModalAgain} // Reopen Collaborators Modal
+          onAddMoreCollaborators={openCollaboratorsModalAgain}
         />
       )}
     </div>
