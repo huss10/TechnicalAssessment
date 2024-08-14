@@ -226,10 +226,13 @@ main {
 
 .delete-icon {
   display: none; /* Hide the delete icon by default */
-  width: 30px; 
-  height: 30px; 
+  width: 40px; 
+  height: 40px; 
   cursor: pointer;
-  margin-left: 15px;
+  position: absolute; /* Position it absolutely within the parent */
+  top: 11px; /* Move it on top */
+  right: 0; /* Align it to the right */
+  z-index: 10; /* Ensure it's on top of other elements */
 }
 .empty-state {
   display: flex;
