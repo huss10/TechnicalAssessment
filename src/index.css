@@ -1,13 +1,254 @@
+
 body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #555;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  position: relative;
+  align-items: flex-start;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.feather { /* Feather Inkpot Image in background */
+  position: fixed;
+  top: 35%;
+  left: 100px;
+  width: 275px;
+  z-index: -1; /*makes it stay behind the content. */
 }
+
+.container {
+  width: 100%;
+  max-width: 600px; 
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+h1 {  /* NOTES heading */
+  font-size: 36px;
+  margin: 0;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.searchicon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -54px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 10px;
+  flex-grow: 1;
+  margin-right: 50px;
+}
+
+.search-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #bbb;
+  width: 100%;
+  padding: 10px 0;
+  font-style: italic;
+}
+
+.search-bar input::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
+.notes-container {
+  width: 100%;
+  position: relative; 
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  position: relative; 
+}
+
+.note-icon {
+  position: absolute;
+  left: -62px; /* Adjust this value to align under the search icon */
+  top: 50%;
+  top: 56px;
+  transform: translateY(-50%);
+}
+
+
+.note:hover .thumbtack-hover-icon {
+  display: inline-block; /* Show the thumbtack invisible icon when the note is hovered */
+}
+.note:hover .thumbtack-icon {
+  display: inline-block; /* Show the colored thumbtack icon for first noted when hovered */
+}
+
+.thumbtack-hover-icon{
+  display: none;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.thumbtack-icon {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 50px;
+  margin-right: -50px;
+}
+
+
+.add-icon { /* Add Collaborator icon */
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('addicon.PNG') no-repeat center center;
+  background-size: contain;
+  margin-right: -10px;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative; /* Allow positioning adjustments */
+  left: -15px; /* Move it slightly to the left */
+}
+
+.note-content {
+  flex-grow: 1;
+  margin-left: 5px; /* Ensure text doesn't overlap with the icon */
+  max-width: 540px;
+  text-align: left;
+}
+.note-content h2 { /* Collaborator names */
+  margin: 0;
+  font-size: 20px;
+  color: #7a7a7a;
+  font-weight: bold;
+  max-width: 600px;
+  margin-left: -8px;
+}
+
+.note-content p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #aaa;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.note-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Ensures the time and delete icon are pushed to the right */
+}
+
+.note-time {
+  color: #aaa;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: bold;
+  margin-right: -15px; 
+}
+
+.add-note { /* Green add note icon */
+  background-color: #67db6b;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute; 
+  right: 520px; 
+  top: 30px; 
+}
+
+.add-note-empty {
+  background-color: #67db6b;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+
+.note:hover .delete-icon {
+  display: inline-block; /* Show the delete icon when the note is hovered */
+}
+
+.delete-icon {
+  display: none; /* Hide the delete icon by default */
+  width: 30px; 
+  height: 30px; 
+  cursor: pointer;
+  margin-left: 15px;
+}
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.empty-state p {
+  font-size: 20px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
