@@ -135,8 +135,8 @@ main {
 
 .add-icon { /* Add Collaborator icon */
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 37px;
+  height: 37px;
   background: url('addicon.PNG') no-repeat center center;
   background-size: contain;
   margin-right: -10px;
