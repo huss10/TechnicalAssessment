@@ -106,27 +106,36 @@ main {
   top: 30%;
   transform: translateY(-50%);
   z-index: 2; /* Ensure it's clickable and above other elements */
-}
-
-.note:hover .thumbtack-hover-icon,
-.note:hover .thumbtack-icon {
-  display: inline-block; /* Show the pin icon when the note is hovered */
-}
-
-.thumbtack-hover-icon,
-.thumbtack-icon {
-  display: inline-block;
   width: 30px;
   height: 30px;
-  cursor: pointer;
-}
-
-.thumbtack-hover-icon {
-  display: none;
 }
 
 .note-icon img {
   cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute; /* Ensure the pins overlap correctly */
+  top: 0;
+  left: 0;
+}
+
+.note-icon .thumbtack-icon {
+  display: block; /* Blue pin is always visible */
+  z-index: 1; /* Lower z-index to ensure it's below the gray pin */
+}
+
+.note-icon .thumbtack-hover-icon {
+  display: none; /* Hide the gray pin by default */
+  z-index: 2; /* Higher z-index to show above the blue pin on hover */
+}
+
+/* Show the gray pin on hover */
+.note:hover .thumbtack-hover-icon {
+  display: block;
+}
+
+.note:hover .thumbtack-icon {
+  display: block; /* Keep the blue pin visible */
 }
 
 .add-icon { /* Add Collaborator icon */

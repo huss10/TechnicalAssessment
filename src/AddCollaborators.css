@@ -358,7 +358,7 @@
   max-width: 350px;
   margin-right: 150px;
   margin-left: -250px;
-  min-height: 370px; /* Match with the list's minimum height */
+  max-height: 370px; /* Match with the list's minimum height */
   display: flex;
   flex-direction: column; /* Ensure elements stack vertically */
   align-items: flex-start;
